@@ -1,3 +1,9 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://pbund.github.io/blog2/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Blog2 by Marty Bullfrog'
+theme = 'm10c'
+
+[params]
+  author = "Christopher Hart"
+  description = "A blog about all things technical."
+
