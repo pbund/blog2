@@ -16,6 +16,7 @@ Since this is an undocumented command, no command line help or tab completion wi
 You first need to start ttcp on the receiving device, where you can select all the defaults. Note you don’t need to specify any IP information on the listening device (basically it says “Let me open a session listening on TCP port 5001 on all interfaces”):
 
 
+```
 C3560-7.4# ttcp
 transmit or receive [receive]: 
 receive packets asynchronously [n]: 
@@ -32,6 +33,7 @@ show tcp information at end [n]:
 
 ttcp-r: buflen=32768, align=16384/0, port=5001
 rcvwndsize=32768, delayedack=yes  tcp
+```
 
 
 At this point the CLI will just hang, waiting for a ttcp connection from another device. 
@@ -116,9 +118,10 @@ C3560-7.5#sh proc cpu h
 ## Links to other TTCP info
 
 Some other sites with info on ttcp
+
 http://technologyordie.com/testing-throughput-with-ttcp-and-cisco-devices
 
--	No VRF support, available on ISR 4321
--	available on ISR routers (at least the 4321)
+-	No VRF support
+-	Available on ISR routers (at least the 4321)
 
 If you really want to test maximum speed, I would use alternative speed tests between PCs/Macs attached directly to the network devices in question.
