@@ -114,14 +114,23 @@ C3560-7.5#sh proc cpu h
 <snipped>
 ```
 
+
+If you really want to test maximum link speed, I would use alternative speed tests between user PCs attached directly to the network devices in question.
+
+### Other notes
+
+-	No VRF support
+-	Available on ISR routers (at least the 4321)
+
+
 ### Links to other TTCP info
 
 Some other sites with info on ttcp
 
+https://www.cisco.com/c/en/us/support/docs/dial-access/asynchronous-connections/10340-ttcp.html
+
 http://technologyordie.com/testing-throughput-with-ttcp-and-cisco-devices
 
--	No VRF support
--	Available on ISR routers (at least on the 4321)
 
-If you really want to test maximum speed, I would use alternative speed tests between PCs/Macs attached directly to the network devices in question.
+Happy Festivus! Don’t screw up anything at work…
 
