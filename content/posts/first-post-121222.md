@@ -5,16 +5,15 @@ draft: false
 ---
 
 
-I’ve always been interested in lesser-known or unusual Cisco IOS commands. TTCP is one of these.
+I’ve always been interested in lesser-known or unusual Cisco commands. TTCP is one of these.
 
 TTCP (“Test-TCP”) is a hidden command available on most Cisco routers and switches. It can be used to test TCP connection speeds between Cisco devices, if both devices support it. It tries to send data as fast as possible (normal TCP behavior), but my tests show the speed is nowhere near the maximum link speed (it generated 22 Mbps on a 100 Mbps connection between two Catalyst 3560 switches). But I use it to generate traffic to see if line errors are increasing, or maybe test QoS or ACL policies.
 
 Since this is an undocumented command, no command line help or tab completion will show its existence. Also note that the CPU usage jumps to near 100% on both sides when data is being sent -- this can negatively affect your boss’s youtubing activities.
 
-## How to do it
+### How to do it
 
 You first need to start ttcp on the receiving device, where you can select all the defaults. Note you don’t need to specify any IP information on the listening device (basically it says “Let me open a session listening on TCP port 5001 on all interfaces”):
-
 
 ```
 C3560-7.4# ttcp
@@ -53,7 +52,7 @@ bufoffset [0]:
 port [5001]: 
 sinkmode [y]: 
 buffering on writes [y]: 
-show tcp information at end [n]: **y**
+show tcp information at end [n]: y
 
 ttcp-t: buflen=32768, nbuf=2048, align=16384/0, port=5001  tcp  -> 192.168.7.4
 ttcp-t: connect
@@ -88,9 +87,9 @@ Flags: higher precedence, retransmission timeout
 Datagrams (max data segment is 1460 bytes):
 Rcvd: 45060 (out of order: 0), with data: 0, total data bytes: 0
 Sent: 47106 (retransmit: 0), with data: 47104, total data bytes: 67108864
-```
 
 You can see above that 67 Mbytes were sent in 24 seconds, for a rate of 2.7 MB/s, or 22 Mbps.
+```
 
 Note the high CPU usage during the data transfer (both switches show similar levels):
 
@@ -115,13 +114,14 @@ C3560-7.5#sh proc cpu h
 <snipped>
 ```
 
-## Links to other TTCP info
+### Links to other TTCP info
 
 Some other sites with info on ttcp
 
 http://technologyordie.com/testing-throughput-with-ttcp-and-cisco-devices
 
 -	No VRF support
--	Available on ISR routers (at least the 4321)
+-	Available on ISR routers (at least on the 4321)
 
 If you really want to test maximum speed, I would use alternative speed tests between PCs/Macs attached directly to the network devices in question.
+
