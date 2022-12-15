@@ -14,19 +14,21 @@ rcvwndsize [32768]:
 ack frequency [0]:
 delayed ACK [y]:
 show tcp information at end [n]:</p><p>ttcp-r: buflen=32768, align=16384/0, port=5001
-rcvwndsize=32768, delayedack=yes tcp</p><p>At this point the CLI will just hang, waiting for a ttcp connection from another device.</p><p>On the other (transmitting) device, you similarly use ttcp to establish a transmitting session to the listening ttcp device:</p><p>C3560-7.5# <strong>ttcp</strong>
-transmit or receive [receive]: <strong>transmit</strong>
-Target IP address: <strong>192.168.7.4</strong> (this is the IP of the listening box)
-calculate checksum during buffer write [y]:
-perform tcp half close [n]:
-send buflen [32768]:
-send nbuf [2048]:
-bufalign [16384]:
-bufoffset [0]:
-port [5001]:
-sinkmode [y]:
-buffering on writes [y]:
-show tcp information at end [n]: <strong>y</strong></p><p>ttcp-t: buflen=32768, nbuf=2048, align=16384/0, port=5001 tcp -> 192.168.7.4
+rcvwndsize=32768, delayedack=yes tcp</p><p>At this point the CLI will just hang, waiting for a ttcp connection from another device.</p><p>On the other (transmitting) device, you similarly use ttcp to establish a transmitting session to the listening ttcp device:</p><pre tabindex=0><code>C3560-7.5# **ttcp**
+transmit or receive [receive]: **transmit**
+Target IP address: **192.168.7.4**     (this is the IP of the listening box)
+calculate checksum during buffer write [y]: 
+perform tcp half close [n]: 
+send buflen [32768]: 
+send nbuf [2048]: 
+bufalign [16384]: 
+bufoffset [0]: 
+port [5001]: 
+sinkmode [y]: 
+buffering on writes [y]: 
+show tcp information at end [n]: **y**
+
+ttcp-t: buflen=32768, nbuf=2048, align=16384/0, port=5001  tcp  -&gt; 192.168.7.4
 ttcp-t: connect
 ttcp-t: 67108864 bytes in 23790 ms (23.790 real seconds) (~2753 kB/s) +++
 ttcp-t: 2048 I/O calls
@@ -34,21 +36,32 @@ ttcp-t: 0 sleeps (0 ms total) (0 ms average)
 Connection state is ESTAB, I/O status: 1, unread input bytes: 0
 Mininum incoming TTL 0, Outgoing TTL 255
 Local host: 192.168.7.5, Local port: 47996
-Foreign host: 192.168.7.4, Foreign port: 5001</p><p>Enqueued packets for retransmit: 17, input: 0 mis-ordered: 0 (0 bytes)</p><p>Event Timers (current time is 0x9D1F9F2B):
-Timer Starts Wakeups Next
-Retrans 5761 0 0x9D1FA052
-TimeWait 0 0 0x0
-AckHold 0 0 0x0
-SendWnd 0 0 0x0
-KeepAlive 0 0 0x0
-GiveUp 0 0 0x0
-PmtuAger 0 0 0x0
-DeadWait 0 0 0x0</p><p>iss: 1036349108 snduna: 1103433965 sndnxt: 1103457973 sndwnd: 32768
-irs: 4060423733 rcvnxt: 4060423734 rcvwnd: 4128 delrcvwnd: 0</p><p>SRTT: 300 ms, RTTO: 303 ms, RTV: 3 ms, KRTT: 0 ms
+Foreign host: 192.168.7.4, Foreign port: 5001
+
+Enqueued packets for retransmit: 17, input: 0  mis-ordered: 0 (0 bytes)
+
+Event Timers (current time is 0x9D1F9F2B):
+Timer          Starts    Wakeups            Next
+Retrans          5761          0      0x9D1FA052
+TimeWait            0          0             0x0
+AckHold             0          0             0x0
+SendWnd             0          0             0x0
+KeepAlive           0          0             0x0
+GiveUp              0          0             0x0
+PmtuAger            0          0             0x0
+DeadWait            0          0             0x0
+
+iss: 1036349108  snduna: 1103433965  sndnxt: 1103457973     sndwnd:  32768
+irs: 4060423733  rcvnxt: 4060423734  rcvwnd:       4128  delrcvwnd:      0
+
+SRTT: 300 ms, RTTO: 303 ms, RTV: 3 ms, KRTT: 0 ms
 minRTT: 0 ms, maxRTT: 300 ms, ACK hold: 200 ms
-Flags: higher precedence, retransmission timeout</p><p>Datagrams (max data segment is 1460 bytes):
+Flags: higher precedence, retransmission timeout
+
+Datagrams (max data segment is 1460 bytes):
 Rcvd: 45060 (out of order: 0), with data: 0, total data bytes: 0
-Sent: 47106 (retransmit: 0), with data: 47104, total data bytes: 67108864</p><p>You can see above that 67 Mbytes were sent in 24 seconds, for a rate of 2.7 MB/s, or 22 Mbps.</p><p>Note the high CPU usage during the data transfer (both switches show similar levels):</p><p>C3560-7.5#sh proc cpu h</p><pre><code>66669999999999999999999911111                             
+Sent: 47106 (retransmit: 0), with data: 47104, total data bytes: 67108864
+</code></pre><p>You can see above that 67 Mbytes were sent in 24 seconds, for a rate of 2.7 MB/s, or 22 Mbps.</p><p>Note the high CPU usage during the data transfer (both switches show similar levels):</p><p>C3560-7.5#sh proc cpu h</p><pre><code>66669999999999999999999911111                             
 7777666666666633333333332222244444555554444444444555555555
 </code></pre><p>100 **********<br>90 ********************<br>80 ********************<br>70 ************************<br>60 ************************<br>50 ************************<br>40 ************************<br>30 ************************<br>20 ************************<br>10 ***************************** ***** *********
 0&mldr;.5&mldr;.1&mldr;.1&mldr;.2&mldr;.2&mldr;.3&mldr;.3&mldr;.4&mldr;.4&mldr;.5&mldr;.5&mldr;.
