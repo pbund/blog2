@@ -16,7 +16,7 @@ Since this is an undocumented command, no command line help or tab completion wi
 You first need to start ttcp on the receiving device, where you can select all the defaults. Note you don’t need to specify any IP information on the listening device (basically it says “Let me open a session listening on TCP port 5001 on all interfaces”):
 
 
-C3560-7.4\# **ttcp**
+C3560-7.4# **ttcp**
 transmit or receive [receive]: 
 receive packets asynchronously [n]: 
 perform tcp half close [n]: 
@@ -38,7 +38,8 @@ At this point the CLI will just hang, waiting for a ttcp connection from another
 
 On the other (transmitting) device, you similarly use ttcp to establish a transmitting session to the listening ttcp device:
 
-C3560-7.5\# **ttcp**
+```
+C3560-7.5# **ttcp**
 transmit or receive [receive]: **transmit**
 Target IP address: **192.168.7.4**     (this is the IP of the listening box)
 calculate checksum during buffer write [y]: 
@@ -85,6 +86,7 @@ Flags: higher precedence, retransmission timeout
 Datagrams (max data segment is 1460 bytes):
 Rcvd: 45060 (out of order: 0), with data: 0, total data bytes: 0
 Sent: 47106 (retransmit: 0), with data: 47104, total data bytes: 67108864
+```
 
 You can see above that 67 Mbytes were sent in 24 seconds, for a rate of 2.7 MB/s, or 22 Mbps.
 
