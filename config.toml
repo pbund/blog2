@@ -1,6 +1,6 @@
 baseURL = 'https://pbund.github.io/blog2/'
 languageCode = 'en-us'
-title = 'Blog2 by Marty Bullfrog'
+title = 'Cisco Stuff by Marty Bullfrog'
 theme = 'm10c'
 
 [params]
