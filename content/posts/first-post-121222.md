@@ -16,7 +16,7 @@ Since this is an undocumented command, no command line help or tab completion wi
 You first need to start ttcp on the receiving device, where you can select all the defaults. Note you don’t need to specify any IP information on the listening device (basically it says “Let me open a session listening on TCP port 5001 on all interfaces”):
 
 
-C3560-7.4# **ttcp**
+C3560-7.4\# **ttcp**
 transmit or receive [receive]: 
 receive packets asynchronously [n]: 
 perform tcp half close [n]: 
@@ -38,7 +38,7 @@ At this point the CLI will just hang, waiting for a ttcp connection from another
 
 On the other (transmitting) device, you similarly use ttcp to establish a transmitting session to the listening ttcp device:
 
-C3560-7.5# **ttcp**
+C3560-7.5\# **ttcp**
 transmit or receive [receive]: **transmit**
 Target IP address: **192.168.7.4**     (this is the IP of the listening box)
 calculate checksum during buffer write [y]: 
