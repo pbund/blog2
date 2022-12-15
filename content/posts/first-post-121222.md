@@ -7,9 +7,9 @@ draft: false
 
 I’ve always been interested in lesser-known or unusual Cisco commands. TTCP is one of these.
 
-TTCP (“Test-TCP”) is a hidden command available on most Cisco routers and switches. It can be used to test TCP connection speeds between Cisco devices, if both devices support it. It tries to send data as fast as possible (normal TCP behavior), but my tests show the speed is nowhere near the maximum link speed (it generated 22 Mbps on a 100 Mbps connection between two Catalyst 3560 switches). But I use it to generate traffic to see if line errors are increasing, or maybe test QoS or ACL policies.
+TTCP (“Test-TCP”) is a hidden command available on most Cisco routers and switches. It can be used to test TCP connection speeds between Cisco devices. It tries to send data as fast as possible (normal TCP behavior), but my tests show the speed is nowhere near the maximum link speed. But I use it to generate traffic to check if line errors are increasing, or maybe test QoS or ACL policies. As a speed test, for me ttcp generated 22 Mbps on a 100 Mbps connection between two Catalyst 3560 switches.
 
-Since this is an undocumented command, no command line help or tab completion will show its existence. Also note that the CPU usage jumps to near 100% on both sides when data is being sent -- this can negatively affect your boss’s youtubing activities.
+Since this is an undocumented command, no command line help or tab completion will show its existence. Also note that the CPU usage jumps to near 100% on both sides when data is being sent -- which can negatively affect your boss’s youtubing Fortnite videos.
 
 ### How to do it
 
