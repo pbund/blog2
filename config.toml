@@ -1,9 +1,9 @@
 baseURL = 'https://pbund.github.io/blog2/'
 languageCode = 'en-us'
-title = 'Cisco Inferno by Marty Bullfrog'
+title = 'Cisco Bullfrogging by Marty Bullfrog'
 theme = 'm10c'
 
 [params]
   author = "Paul Bundschuh"
-  description = "Blogs about Cisco topics"
+  description = "Blogs about Cisco and other technical topics"
 
