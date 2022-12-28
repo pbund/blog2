@@ -27,7 +27,7 @@ Exec mode aliases:                 &lt;== THEN SHOW ALIAS
   w                     where
 
 Router#
-</code></pre><p>Note the “sync yes” arguments added to the end of the “event cli&mldr;” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the “set _exit_status&mldr;” command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.</p><h3 id=asynchronous-mode-sync-no>Asynchronous mode (“sync no”)</h3><p>This will run the applet and the matched CLI command independent of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:</p><pre tabindex=0><code>Router#conf t
+</code></pre><p>Note the “sync yes” arguments added to the end of the “event cli&mldr;” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the <code>set _exit_status "1"</code> command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.</p><h3 id=asynchronous-mode-sync-no>Asynchronous mode (“sync no”)</h3><p>This will run the applet and the matched CLI command independent of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:</p><pre tabindex=0><code>Router#conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
 Router(config)#no event manager applet SyncYes
 Router(config)#event manager applet SyncNo    
@@ -51,7 +51,7 @@ Exec mode aliases:
   w                     where
 
 Router#
-Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    &lt;== NOW THE APPLET EXECUTED AFTER THE CLI COMMAND
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    &lt;== NOW THE APPLET EXECUTES AFTER THE CLI COMMAND
 04:14:26.204 UTC Wed Dec 28 2022
 Router#
 </code></pre></div><div class=post-footer></div></article></main></body></html>
