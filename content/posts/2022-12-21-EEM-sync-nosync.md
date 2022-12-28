@@ -19,10 +19,8 @@ So you want run the applet before the matched CLI command. In this example, when
 ```
 Router# conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
-Router(config)# no event manager applet SyncYes
-%EEM: No such applet SyncYes
 Router(config)# event manager applet SyncYes   
-Router(config-applet)# event cli pattern "show alias" sync yes
+Router(config-applet)# event cli pattern "^show alias" sync yes
 Router(config-applet)# action 2.1 cli command "enable"
 Router(config-applet)# action 2.3 cli command "show clock"
 Router(config-applet)# action 2.5 puts "$_cli_result"
@@ -44,6 +42,42 @@ Exec mode aliases:                 <== THEN SHOW ALIAS
   un                    undebug
   w                     where
 
+Router#
+```
+
+Note the “sync yes” arguments added to the end of the “event cli...” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the “set _exit_status...” command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.
+
+### Asynchronous mode (“sync no”)
+
+This will run the applet and the matched CLI command independent of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:
+
+```
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#no event manager applet SyncYes
+Router(config)#event manager applet SyncNo    
+Router(config-applet)#event cli pattern "^show alias" sync no skip no
+Router(config-applet)# action 2.1 cli command "enable"
+Router(config-applet)# action 2.3 cli command "show clock"
+Router(config-applet)# action 2.5 puts "$_cli_result"
+Router(config-applet)#end        
+Router#
+*Dec 28 04:14:15.609: %SYS-5-CONFIG_I: Configured from console by console
+Router#
+Router#sh alias
+Exec mode aliases:
+  h                     help
+  lo                    logout
+  p                     ping
+  r                     resume
+  s                     show
+  u                     undebug
+  un                    undebug
+  w                     where
+
+Router#
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET EXECUTED AFTER THE CLI COMMAND
+04:14:26.204 UTC Wed Dec 28 2022
 Router#
 ```
 
