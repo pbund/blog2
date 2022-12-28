@@ -45,11 +45,11 @@ Exec mode aliases:                 <== THEN SHOW ALIAS
 Router#
 ```
 
-Note the “sync yes” arguments added to the end of the “event cli...” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the `set _exit_status "1"`  command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.
+Note the “sync yes” arguments added to the end of the “event cli...” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the `set _exit_status “1”` command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.
 
 ### Asynchronous mode (“sync no”)
 
-This will run the applet and the matched CLI command independently (asynchronously) of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:
+In async mode, you are required to add specify the skip parameter to indicate whether to execute the original CLI command in addition to your applet. If “skip no” is used, then both the applet and the matched CLI command will run independently (asynchronously) of each other. However, in my testing the CLI command was always executed first, then the EEM applet:
 
 ```
 Router#conf t
@@ -76,11 +76,21 @@ Exec mode aliases:
   w                     where
 
 Router#
-Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET EXECUTES AFTER THE CLI COMMAND
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:  <== NOW THE APPLET OCCURS AFTER
 04:14:26.204 UTC Wed Dec 28 2022
 Router#
 ```
 
-Revised 2022-12-28
+You can see where I added “skip no” arguments at the end of the “event cli" line, which runs the CLI command in addition to the EEM applet. I also don’t need the `set _exit_status “1”` command anymore, since that only applies to sync mode. 
 
+If you don’t want to run the CLI command, either sync or async mode could be used. In this case I would suggest using async mode, since its commands are clearer to the user.
 
+### Summary
+
+-	If you want to run an EEM applet ***then*** the matched CLI command, use sync mode (`event cli pattern “show alias” sync yes` and `set _exit_status “1”` lines, for example)
+-	If you want to run an applet and the matched CLI command, in no particular order, use async mode (`event cli pattern “show alias” sync no skip no` for example). Remember this will probably run the CLI command first.
+-	If you don’t want to run the matched CLI command at all, use either mode (although async mode is clearer, using `event cli pattern “show alias” sync no skip yes`, for example)
+
+Googling “eem sync skip” will show many good links on this subject. I recommend any article under ipspace.net – author Ivan Pepelnjak is a network stud.
+
+Revised 12/28/22
