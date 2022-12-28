@@ -8,9 +8,9 @@ For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post
 
 Note that EEM usually requires an event detector to be specified, i.e. CLI events, syslog events, routing events, etc. The sync argument is only used with the CLI event detector.
 
-As far as I can tell, synchronous mode (“sync yes”) is required ***only*** if you want your EEM applet to run ***before*** the original CLI command. If you don’t care about the order, or don’t want to run the original CLI command, then it doesn’t matter whether you use sync mode or not.
+As far as I can tell, synchronous mode (“sync yes”) is required ***only*** if you want to run both the EEM applet ***and*** the original CLI command, ***in that order***. If you don’t care about the order, or don’t want to run the original CLI command, then it doesn’t matter whether you use sync mode or not.
 
-Let’s show some examples.
+Let’s show some examples. (These were run on a Cisco ISR 4331 running 16.9.6 code.)
 
 ### Synchronous mode (“sync yes”)
 
@@ -49,7 +49,7 @@ Note the “sync yes” arguments added to the end of the “event cli...” com
 
 ### Asynchronous mode (“sync no”)
 
-This will run the applet and the matched CLI command independent of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:
+This will run the applet and the matched CLI command independently (asynchronously) of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:
 
 ```
 Router#conf t
@@ -80,5 +80,7 @@ Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET EXECUTES AFTER 
 04:14:26.204 UTC Wed Dec 28 2022
 Router#
 ```
+
+Revised 2022-12-28
 
 
