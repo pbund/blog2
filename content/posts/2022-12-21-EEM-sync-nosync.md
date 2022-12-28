@@ -45,7 +45,7 @@ Exec mode aliases:                 <== THEN SHOW ALIAS
 Router#
 ```
 
-Note the “sync yes” arguments added to the end of the “event cli...” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the “set _exit_status...” command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.
+Note the “sync yes” arguments added to the end of the “event cli...” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the `set _exit_status "1"`  command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.
 
 ### Asynchronous mode (“sync no”)
 
@@ -76,7 +76,7 @@ Exec mode aliases:
   w                     where
 
 Router#
-Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET EXECUTED AFTER THE CLI COMMAND
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET EXECUTES AFTER THE CLI COMMAND
 04:14:26.204 UTC Wed Dec 28 2022
 Router#
 ```
