@@ -1,12 +1,10 @@
 <!doctype html><html lang=en-us><head><title>EEM: To sync or not to sync // Grokking Cisco with Marty Bullfrog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.109.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Paul Bundschuh"><meta name=description content><link rel=stylesheet href=/blog2/css/main.min.9e9c6027c30f5aa9423b581bd9cddd1ddc66088adb9c2604f89eb5828efea5a1.css><meta name=twitter:card content="summary"><meta name=twitter:title content="EEM: To sync or not to sync"><meta name=twitter:description content="For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post will try to explain how to use the “sync” parameter in an EEM applet. It’s usage seems to confuse users, including myself sometimes. So I did some reading and testing, and here’s what I found.
 Note that EEM usually requires an event detector to be specified, i.e. CLI events, syslog events, routing events, etc. The sync argument is only used with the CLI event detector."><meta property="og:title" content="EEM: To sync or not to sync"><meta property="og:description" content="For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post will try to explain how to use the “sync” parameter in an EEM applet. It’s usage seems to confuse users, including myself sometimes. So I did some reading and testing, and here’s what I found.
 Note that EEM usually requires an event detector to be specified, i.e. CLI events, syslog events, routing events, etc. The sync argument is only used with the CLI event detector."><meta property="og:type" content="article"><meta property="og:url" content="https://pbund.github.io/blog2/posts/2022-12-21-eem-sync-nosync/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-12-21T07:01:24-06:00"><meta property="article:modified_time" content="2022-12-21T07:01:24-06:00"></head><body><header class=app-header><a href=https://pbund.github.io/blog2/><img class=app-header-avatar src=/blog2/avatar.jpg alt="Paul Bundschuh"></a>
-<span class=app-header-title>Grokking Cisco with Marty Bullfrog</span><p>Blogs about Cisco networking and other technical topics</p></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>EEM: To sync or not to sync</h1><div class=post-meta><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Dec 21, 2022</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div></div></header><div class=post-content><p>For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post will try to explain how to use the “sync” parameter in an EEM applet. It’s usage seems to confuse users, including myself sometimes. So I did some reading and testing, and here’s what I found.</p><p>Note that EEM usually requires an event detector to be specified, i.e. CLI events, syslog events, routing events, etc. The sync argument is only used with the CLI event detector.</p><p>As far as I can tell, synchronous mode (“sync yes”) is required <em><strong>only</strong></em> if you want your EEM applet to run <em><strong>before</strong></em> the original CLI command. If you don’t care about the order, or don’t want to run the original CLI command, then it doesn’t matter whether you use sync mode or not.</p><p>Let’s show some examples.</p><h3 id=synchronous-mode-sync-yes>Synchronous mode (“sync yes”)</h3><p>So you want run the applet before the matched CLI command. In this example, whenever the user types the <code>show alias</code> command, you want a <code>show clock</code> to be executed first:</p><pre tabindex=0><code>Router# conf t
+<span class=app-header-title>Grokking Cisco with Marty Bullfrog</span><p>Blogs about Cisco networking and other technical topics</p></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>EEM: To sync or not to sync</h1><div class=post-meta><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Dec 21, 2022</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div></div></header><div class=post-content><p>For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post will try to explain how to use the “sync” parameter in an EEM applet. It’s usage seems to confuse users, including myself sometimes. So I did some reading and testing, and here’s what I found.</p><p>Note that EEM usually requires an event detector to be specified, i.e. CLI events, syslog events, routing events, etc. The sync argument is only used with the CLI event detector.</p><p>As far as I can tell, synchronous mode (“sync yes”) is required <em><strong>only</strong></em> if you want your EEM applet to run <em><strong>before</strong></em> the original CLI command. If you don’t care about the order, or don’t want to run the original CLI command, then it doesn’t matter whether you use sync mode or not.</p><p>Let’s show some examples.</p><h3 id=synchronous-mode-sync-yes>Synchronous mode (“sync yes”)</h3><p>So you want run the applet before the matched CLI command. In this example, whenever the user types the <code>show alias</code> command, you want a <code>show clock</code> to be executed first:</p><pre tabindex=0><code>Router# conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
-Router(config)# no event manager applet SyncYes
-%EEM: No such applet SyncYes
 Router(config)# event manager applet SyncYes   
-Router(config-applet)# event cli pattern &#34;show alias&#34; sync yes
+Router(config-applet)# event cli pattern &#34;^show alias&#34; sync yes
 Router(config-applet)# action 2.1 cli command &#34;enable&#34;
 Router(config-applet)# action 2.3 cli command &#34;show clock&#34;
 Router(config-applet)# action 2.5 puts &#34;$_cli_result&#34;
@@ -28,5 +26,32 @@ Exec mode aliases:                 &lt;== THEN SHOW ALIAS
   un                    undebug
   w                     where
 
+Router#
+</code></pre><p>Note the “sync yes” arguments added to the end of the “event cli&mldr;” command, which sets synchronous mode. (I also used a caret in front of the word “show” to only match lines beginning with “show alias”). To execute the original show alias command afterwards, you need the “set _exit_status&mldr;” command. Setting it to 1 executes the command. If you don’t set this variable, or set it to 0, then the command is skipped.</p><h3 id=asynchronous-mode-sync-no>Asynchronous mode (“sync no”)</h3><p>This will run the applet and the matched CLI command independent of each other. In async mode, you are required to specify the skip parameter to indicate whether to execute the original CLI command. Assuming “skip no” is used, in my testing the CLI command was always executed first, then the EEM applet:</p><pre tabindex=0><code>Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#no event manager applet SyncYes
+Router(config)#event manager applet SyncNo    
+Router(config-applet)#event cli pattern &#34;^show alias&#34; sync no skip no
+Router(config-applet)# action 2.1 cli command &#34;enable&#34;
+Router(config-applet)# action 2.3 cli command &#34;show clock&#34;
+Router(config-applet)# action 2.5 puts &#34;$_cli_result&#34;
+Router(config-applet)#end        
+Router#
+*Dec 28 04:14:15.609: %SYS-5-CONFIG_I: Configured from console by console
+Router#
+Router#sh alias
+Exec mode aliases:
+  h                     help
+  lo                    logout
+  p                     ping
+  r                     resume
+  s                     show
+  u                     undebug
+  un                    undebug
+  w                     where
+
+Router#
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    &lt;== NOW THE APPLET EXECUTED AFTER THE CLI COMMAND
+04:14:26.204 UTC Wed Dec 28 2022
 Router#
 </code></pre></div><div class=post-footer></div></article></main></body></html>
