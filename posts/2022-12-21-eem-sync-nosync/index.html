@@ -37,8 +37,6 @@ Router(config-applet)# action 2.3 cli command &#34;show clock&#34;
 Router(config-applet)# action 2.5 puts &#34;$_cli_result&#34;
 Router(config-applet)#end        
 Router#
-*Dec 28 04:14:15.609: %SYS-5-CONFIG_I: Configured from console by console
-Router#
 Router#sh alias
 Exec mode aliases:
   h                     help
@@ -51,7 +49,7 @@ Exec mode aliases:
   w                     where
 
 Router#
-Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    &lt;== NOW THE APPLET OCCURS AFTERWARDS
-04:14:26.204 UTC Wed Dec 28 2022
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    &lt;== SYSLOG MESSAGE
+04:14:26.204 UTC Wed Dec 28 2022              &lt;== NOW THE CLI COMMAND OCCURS AFTERWARDS
 Router#
 </code></pre><p>You can see where I added “skip no” arguments at the end of the “event cli" line, which runs the CLI command in addition to the EEM applet. I also don’t need the <code>set _exit_status “1”</code> command anymore, since that only applies to sync mode.</p><p>If you don’t want to run the CLI command, either sync or async mode could be used. In this case I would suggest using async mode, since its commands are clearer to the user.</p><h3 id=summary>Summary</h3><ul><li>If you want to run an EEM applet <em><strong>then</strong></em> the matched CLI command, use sync mode (<code>event cli pattern “show alias” sync yes</code> and <code>set _exit_status “1”</code> lines, for example)</li><li>If you want to run an EEM applet and the matched CLI command, in no particular order, use async mode (<code>event cli pattern “show alias” sync no skip no</code> for example). Remember this will probably run the CLI command first.</li><li>If you don’t want to run the matched CLI command at all, use either mode (although async mode is clearer, using <code>event cli pattern “show alias” sync no skip yes</code>, for example)</li></ul><p>Googling “eem sync skip” will show many good links on this subject. I recommend any article under ipspace.net – author Ivan Pepelnjak is a network stud.</p><p>Revised 12/29/22</p></div><div class=post-footer></div></article></main></body></html>
