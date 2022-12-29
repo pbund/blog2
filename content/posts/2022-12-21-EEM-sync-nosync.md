@@ -49,7 +49,7 @@ Note the “sync yes” arguments added to the end of the “event cli...” com
 
 ### Asynchronous mode (“sync no”)
 
-In async mode, you are required to add specify the skip parameter to indicate whether to execute the original CLI command in addition to your applet. If “skip no” is used, then both the applet and the matched CLI command will run independently (asynchronously) of each other. However, in my testing the CLI command was always executed first, then the EEM applet:
+In async mode, you are required to add the "skip" parameter to indicate whether to run the original CLI command in addition to your applet. If “skip no” is used, then both the applet and the matched CLI command will run independently (asynchronously) of each other. However, in my testing the CLI command was always executed first, then the EEM applet:
 
 ```
 Router#conf t
@@ -76,7 +76,7 @@ Exec mode aliases:
   w                     where
 
 Router#
-Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:  <== NOW THE APPLET OCCURS AFTER
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET OCCURS AFTERWARDS
 04:14:26.204 UTC Wed Dec 28 2022
 Router#
 ```
@@ -88,9 +88,9 @@ If you don’t want to run the CLI command, either sync or async mode could be u
 ### Summary
 
 -	If you want to run an EEM applet ***then*** the matched CLI command, use sync mode (`event cli pattern “show alias” sync yes` and `set _exit_status “1”` lines, for example)
--	If you want to run an applet and the matched CLI command, in no particular order, use async mode (`event cli pattern “show alias” sync no skip no` for example). Remember this will probably run the CLI command first.
+-	If you want to run an EEM applet and the matched CLI command, in no particular order, use async mode (`event cli pattern “show alias” sync no skip no` for example). Remember this will probably run the CLI command first.
 -	If you don’t want to run the matched CLI command at all, use either mode (although async mode is clearer, using `event cli pattern “show alias” sync no skip yes`, for example)
 
 Googling “eem sync skip” will show many good links on this subject. I recommend any article under ipspace.net – author Ivan Pepelnjak is a network stud.
 
-Revised 12/28/22
+Revised 12/29/22
