@@ -62,8 +62,6 @@ Router(config-applet)# action 2.3 cli command "show clock"
 Router(config-applet)# action 2.5 puts "$_cli_result"
 Router(config-applet)#end        
 Router#
-*Dec 28 04:14:15.609: %SYS-5-CONFIG_I: Configured from console by console
-Router#
 Router#sh alias
 Exec mode aliases:
   h                     help
@@ -76,8 +74,8 @@ Exec mode aliases:
   w                     where
 
 Router#
-Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== NOW THE APPLET OCCURS AFTERWARDS
-04:14:26.204 UTC Wed Dec 28 2022
+Dec 28 04:14:26.287: %HA_EM-6-LOG: SyncNo:    <== SYSLOG MESSAGE
+04:14:26.204 UTC Wed Dec 28 2022              <== NOW THE CLI COMMAND OCCURS AFTERWARDS
 Router#
 ```
 
