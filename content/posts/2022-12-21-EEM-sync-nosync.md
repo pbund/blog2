@@ -91,4 +91,4 @@ If you don’t want to run the CLI command, either sync or async mode could be u
 
 Googling “eem sync skip” will show many good links on this subject. I recommend any article under ipspace.net – author Ivan Pepelnjak is a network stud.
 
-Revised 12/29/22
+Revised 12/29/22 - email oldpaul99@gmail.com if you have comments/corrections
