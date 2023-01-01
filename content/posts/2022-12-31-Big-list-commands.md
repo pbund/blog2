@@ -1,5 +1,5 @@
 ---
-title: "2022 12 31 Big List Commands"
+title: "Big List of Cisco and other commands"
 date: 2022-12-31T10:46:43-06:00
 draft: false
 ---
