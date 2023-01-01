@@ -10,28 +10,28 @@ Warning: Some of these command are dangerous, where they might brick your system
 
 Useful commands
 --------------------------
--	to activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card (see fbk-focc-rtr1, which has both types of cards):
--	cmd “card type t1 0 1” (example) will cause controllers to appear in config
--	cmd “controller t1 0/1> channel-group 0 timeslots 1-24” will cause s0/1 interface to appear in config
+-	to activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
+-	`card type t1 0 1` (example) will cause controllers to appear in config
+-	`controller t1 0/1` > `channel-group 0 timeslots 1-24` will cause s0/1 interface to appear in config
 -	use ctrl-v or esc+q, then a ?,  to enter a ? in a CLI password
--	term mon   =>  enables you see debug output in a telnet/ssh session
+-	term mon   =>  enables you see logging/debug output in a telnet/ssh session
 -	term no mon   =>  turns it off, should also use no logging console at the same time, because it causes cpu interrupts which are cpu intensive
 -	sh context, env, inventory, diag are good cmds
--	send log paul is great   =>  puts “%sys-2-logmsg: Message from 1(FC8466): paul is great” in the logs, good way to annotate them
+-	send log paul is great   =>  puts “%sys-2-logmsg: Message from 1(oldpaul): paul is great” in the logs, good way to annotate them
 -	send *                           =>  send other logged in users a message
 -	send *                           =>  from a terminal access server, send following cmds to all connected hosts, whether active or not (i.e. end, config t, <cmd>)
 -	logging discriminator Foo msg-body includes starttext.*endtext   => define discriminator
 -	logging buffered discriminator Foo 32768     => only log messages to buffer that match the discriminator
 -	logging rate-limit console 1 except critical    => rate limit console messages to 1 per sec, except for critical and more important (lower) level msgs
--	ip access-list log-update threshold 1   => display log messages for each ace hit, as opposed to waiting for default 5 minutes, log acl
+-	ip access-list log-update threshold 1   => display log messages for each ACE (in an ACL) hit, as opposed to waiting for default 5 minutes, log acl
 -	ip access-list logging interval 100        => one log-enabled ACE packet per 100 ms will be process-switched; limits the effects of ACL logging-induced process switching
--	term exec prompt timestamp   =>  display date/time/cpu on show cmds
--	line vty 0 15> exec prompt timestamp   =>  same thing, but permanently
--	terminal escape-character 3    => enable ctrl-c instead of ctrl-shift-6, just for this login session
+-	term exec prompt timestamp   =>  display date/time/cpu on show cmds, in your current session
+-	line vty 0 15> exec prompt timestamp   =>  same thing, but permanently for all users
+-	term escape-character 3          => enable ctrl-c instead of ctrl-shift-6, just for this login session
 -	escape-character 3                  => on console/vty lines, enable ctrl-c instead of ctrl-shift-6 everytime you login
 -	escape-character x                  => same thing, but use the letter x
 -	wr, reload in 010, do changes w/o saving, if you are cutoff then let router reload, but if changes work then “reload cancel”
--	logging synchronous, on console and vty lines
+-	logging synchronous, on console and vty lines  => helps with screen clutter
 -	delete /for /rec <dir>, delete directory and all its contents
 -	verify /md5 foo.bin        => show md5 for file foo.bin
 -	crypto key gen rsa <#> -- transport input ssh  => enables ssh, also requires either ip domain name to be set or hostname, or both
