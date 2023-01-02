@@ -1,26 +1,20 @@
 ---
-title: "Big List of Cisco/misc commands"
+title: "Big List of mostly Cisco commands"
 date: 2022-12-31T10:46:43-06:00
 draft: false
 ---
 
-This is a compendium of useful or interesting commands I’ve gathered over the years. Mainly these apply to Cisco equipment, but there are a couple of Juniper and Linux commands.
+This is a compendium of useful or interesting commands and tips I’ve gathered over the years. Mainly these apply to Cisco equipment, but there are a couple of Juniper and Linux commands. I almost always show example commands since my brain processes them better.
 
-Warning: Some of these command are dangerous, where they might brick your system if used. Don’t come crying to me if this happens. I would google their usage before any relying on them for production systems. But largely they are more useful than dangerous.
+Warning: Some of these command are dangerous, where they might hose your system if used. Don’t come crying to me if this happens. Research their usage before any relying on them for production systems. But largely they are more useful than dangerous.
 
 
 # H1
 
 not text 2
 
-## H2
-
-- list
-    - list
-- list
-
 # Useful commands
-- to activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
+- To activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
     - `card type t1 0 1` (example) will cause controllers to appear in config
     - `controller t1 0/1` > `channel-group 0 timeslots 1-24` will cause s0/1 interface to appear in config
 -	use ctrl-v or esc+q, then a ?,  to enter a ? in a CLI password
@@ -28,14 +22,15 @@ not text 2
 -	term no mon   =>  turns it off, should also use no logging console at the same time, because it causes cpu interrupts which are cpu intensive
 -	sh context, env, inventory, diag are good cmds
 -	send log paul is great   =>  puts “%sys-2-logmsg: Message from 1(oldpaul): paul is great” in the logs, good way to annotate them
--	send *                           =>  send other logged in users a message
--	send *                           =>  from a terminal access server, send following cmds to all connected hosts, whether active or not (i.e. end, config t, <cmd>)
--	logging discriminator Foo msg-body includes starttext.*endtext   => define discriminator
--	logging buffered discriminator Foo 32768     => only log messages to buffer that match the discriminator
--	logging rate-limit console 1 except critical    => rate limit console messages to 1 per sec, except for critical and more important (lower) level msgs
--	ip access-list log-update threshold 1   => display log messages for each ACE (in an ACL) hit, as opposed to waiting for default 5 minutes, log acl
--	ip access-list logging interval 100        => one log-enabled ACE packet per 100 ms will be process-switched; limits the effects of ACL logging-induced process switching
--	term exec prompt timestamp   =>  display date/time/cpu on show cmds, in your current session
+-	send *   =>  send other logged in users a message
+-	send *   =>  from a terminal access server, send following cmds to all connected hosts, whether active or not (i.e. end, config t, <cmd>)
+- Logging
+    - logging discriminator Foo msg-body includes starttext.*endtext   => define discriminator
+    - logging buffered discriminator Foo 32768     => only log messages to buffer that match the discriminator
+    - logging rate-limit console 1 except critical    => rate limit console messages to 1 per sec, except for critical and more important (lower) level msgs
+    - ip access-list log-update threshold 1   => display log messages for each ACE (in an ACL) hit, as opposed to waiting for default 5 minutes, log acl
+    - ip access-list logging interval 100        => one log-enabled ACE packet per 100 ms will be process-switched; limits the effects of ACL logging-induced process switching
+- term exec prompt timestamp   =>  display date/time/cpu on show cmds, in your current session
 -	line vty 0 15> exec prompt timestamp   =>  same thing, but permanently for all users
 -	term escape-character 3          => enable ctrl-c instead of ctrl-shift-6, just for this login session
 -	escape-character 3                  => on console/vty lines, enable ctrl-c instead of ctrl-shift-6 everytime you login
