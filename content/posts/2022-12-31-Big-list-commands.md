@@ -1,5 +1,5 @@
 ---
-title: "Big List of Cisco and other commands"
+title: "Big List of Cisco/misc commands"
 date: 2022-12-31T10:46:43-06:00
 draft: false
 ---
@@ -8,7 +8,6 @@ This is a compendium of useful or interesting commands I’ve gathered over the 
 
 Warning: Some of these command are dangerous, where they might brick your system if used. Don’t come crying to me if this happens. I would google their usage before any relying on them for production systems. But largely they are more useful than dangerous.
 
-not text 2
 
 # H1
 
@@ -20,19 +19,10 @@ not text 2
     - list
 - list
 
-### H3
-
-- list
-
-note text 3
-
-# H1
-
-Useful commands
---------------------------
--	to activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
--	`card type t1 0 1` (example) will cause controllers to appear in config
--	`controller t1 0/1` > `channel-group 0 timeslots 1-24` will cause s0/1 interface to appear in config
+# Useful commands
+- to activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
+    - `card type t1 0 1` (example) will cause controllers to appear in config
+    - `controller t1 0/1` > `channel-group 0 timeslots 1-24` will cause s0/1 interface to appear in config
 -	use ctrl-v or esc+q, then a ?,  to enter a ? in a CLI password
 -	term mon   =>  enables you see logging/debug output in a telnet/ssh session
 -	term no mon   =>  turns it off, should also use no logging console at the same time, because it causes cpu interrupts which are cpu intensive
