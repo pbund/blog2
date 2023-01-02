@@ -6,7 +6,27 @@ draft: false
 
 This is a compendium of useful or interesting commands I’ve gathered over the years. Mainly these apply to Cisco equipment, but there are a couple of Juniper and Linux commands.
 
-Warning: Some of these command are dangerous, where they might brick your system if used. Don’t come crying to me if that happens. I would google their usage before any relying on them for production systems. But largely they are more useful than dangerous.
+Warning: Some of these command are dangerous, where they might brick your system if used. Don’t come crying to me if this happens. I would google their usage before any relying on them for production systems. But largely they are more useful than dangerous.
+
+not text 2
+
+# H1
+
+not text 2
+
+## H2
+
+- list
+    - list
+- list
+
+### H3
+
+- list
+
+note text 3
+
+# H1
 
 Useful commands
 --------------------------
