@@ -8,11 +8,6 @@ This is a compendium of useful or interesting commands and tips I’ve gathered 
 
 Warning: Some of these command are dangerous, where they might hose your system if used. Don’t come crying to me if this happens. Research their usage before any relying on them for production systems. But largely they are more useful than dangerous.
 
-
-# H1
-
-not text 2
-
 # Useful commands
 - To activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
     - `card type t1 0 1` (example) will cause controllers to appear in config
@@ -50,13 +45,13 @@ not text 2
 -	or use + text, which will grep the rest of output for that text
 -	or use – text, which will grep –v the rest of the output for that text
 -	debug ip tcp transactions   => debug tcp session
--	example TCL script, which pings multiple IPs:
+- example TCL script, which pings multiple IPs:
 tclsh
 foreach i {
 150.1.1.1
 204.12.1.254
 } {ping $i repeat 2}
--	example switch Macro script, which pings multiple IPs:
+- example switch Macro script, which pings multiple IPs:
 conf t
 macro name Ping
 Enter macro commands one per line. End with the character '@'.
