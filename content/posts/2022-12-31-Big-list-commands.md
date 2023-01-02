@@ -45,12 +45,12 @@ Warning: Some of these command are dangerous, where they might hose your system 
 -	or use + text, which will grep the rest of output for that text
 -	or use – text, which will grep –v the rest of the output for that text
 -	debug ip tcp transactions   => debug tcp session
-- example TCL script, which pings multiple IPs:
-tclsh
-foreach i {
-150.1.1.1
-204.12.1.254
-} {ping $i repeat 2}
+- example TCL script, which pings multiple IPs
+    - tclsh
+    - foreach i {
+    - 150.1.1.1
+    - 204.12.1.254
+    - } {ping $i repeat 2}
 - example switch Macro script, which pings multiple IPs:
 conf t
 macro name Ping
