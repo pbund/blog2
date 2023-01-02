@@ -54,6 +54,7 @@ foreach i {
 } {ping $i repeat 2}
 ```
 - example switch Macro script, which pings multiple IPs:
+```
 conf t
 macro name Ping
 Enter macro commands one per line. End with the character '@'.
@@ -61,7 +62,9 @@ do ping 150.1.1.1 repeat 3 source Lo0
 do ping 204.12.1.254 repeat 3 source Lo0
 @
 switch(config)# macro global apply Ping 
+```
 -	another way to TCL ping IPs, but create executable file:
+```
 tclsh
   puts [open "flash:foo.tcl" w+] {
     foreach i {
@@ -71,19 +74,15 @@ tclsh
   }
 tclquit
 tclsh foo.tcl
--	example switch Macro script, which pings multiple IPs:
-conf t
-macro name Ping
-Enter macro commands one per line. End with the character '@'.
-do ping 150.1.1.1 repeat 3 source Lo0
-do ping 204.12.1.254 repeat 3 source Lo0
-@
-switch(config)# macro global apply Ping 
+```
 -	Use TCL to batch IOS commands:
+```
 tclsh
   ios_config "int g0/0” “speed auto” “duplex auto”
   tclquit
+```
 -	Use TCL to create blank config file in flash:
+```
 tclsh
   puts [ open "flash:blank.cfg" w+] {
   version 15.4
@@ -91,6 +90,7 @@ tclsh
   end
 }
 tclquit
+```
 -	Change to default (blank) config without rebooting, using local blank config file created in previous step, takes 10-15 sec:
 router# config replace flash:blank.cfg
 -	Use EEM to wait for two events to occur, in any order, then take some action:
