@@ -103,24 +103,24 @@ event manager applet Foo
   action 2.0 cli command “show clock | append foo.txt”
 ```
 - Enable Shell Commands
-    - Enable shell cmds in this session or permanently, good on ios 15.1+. Enables multi-pipes, grep, man, cat, cut, echo, head, tail, sort, nl, redirect to file, unix-script for cmds and functions (see D Bombal youtube videos)
+    - Enable shell cmds in this session or permanently, good on IOS 15.1 and up. Enables multi-pipes, grep, man, cat, cut, echo, head, tail, sort, nl, redirect to file, and unix scripting for cmds and functions (see David Bombal youtube videos)
         - term shell           => for this session only
         - conf t> shell processing full    => for everyone
-    -	example shell cmds on router
-    sh ip route | grep –i loopback | grep –v 123
-    sh run | grep –b banner | grep –u alias => start with first line containing banner, end before line containing alias 
-    -	example shell script to ping 3 consecutive IPs, from exec command line
-    for x in 1 2 3
-       do
-       ping 10.10.10.$x
-       done              => starts the three pings
+    - example shell cmds on router
+        - sh ip route | grep –i loopback | grep –v 123
+        - sh run | grep –b banner | grep –u alias => start with first line containing banner, end before line containing alias 
+    - example shell script to ping 3 consecutive IPs, from exec command line
+        - for x in 1 2 3
+        - do
+        - ping 10.10.10.$x
+        - done              => starts the three pings
     -	example Linux function, stays around for session
-    function testping (){
-       ping 10.10.1.1
-       ping 10.10.1.2
-    }
-    testping             => executes function testing
-    sh shell function    => display above function and others 
+        - function testping (){
+        - ping 10.10.1.1
+        - ping 10.10.1.2
+        - }
+        - testping             => executes function testing
+        - sh shell function    => display above function and others 
 -	sh file <file> md5sum     => Nexus md5 verification
 -	hardware access-list allow deny ace => Nexus 6.1(3) and up, allow ip tcp synwait-time 10   => lowers tcp timeout from default 30s to 10s
 -	sh power inline  => show which ports are powering POE devices
