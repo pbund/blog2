@@ -102,9 +102,9 @@ event manager applet Foo
   action 1.0 syslog msg “write some msg to syslog”
   action 2.0 cli command “show clock | append foo.txt”
 ```
--	Enable shell cmds in this session or permanently, good on ios 15.1+. Enables multi-pipes, grep, man, cat, cut, echo, head, tail, sort, nl, redirect to file, unix-script for cmds and functions (see D Bombal youtube videos)
-term shell           => for this session only
-conf>shell processing full    => for everyone
+- Enable shell cmds in this session or permanently, good on ios 15.1+. Enables multi-pipes, grep, man, cat, cut, echo, head, tail, sort, nl, redirect to file, unix-script for cmds and functions (see D Bombal youtube videos)
+    - term shell           => for this session only
+    - conf>shell processing full    => for everyone
 -	example shell cmds on router
 sh ip route | grep –i loopback | grep –v 123
 sh run | grep –b banner | grep –u alias => start with first line containing banner, end before line containing alias 
