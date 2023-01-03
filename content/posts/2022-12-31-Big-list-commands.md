@@ -48,10 +48,10 @@ Warning: Some of these command are dangerous, where they might hose your system 
 - example TCL script, which pings multiple IPs
 ```
 tclsh
-foreach i {
-150.1.1.1
-204.12.1.254
-} {ping $i repeat 2}
+  foreach i {
+  150.1.1.1
+  204.12.1.254
+  } {ping $i repeat 2}
 ```
 - example switch Macro script, which pings multiple IPs:
 ```
