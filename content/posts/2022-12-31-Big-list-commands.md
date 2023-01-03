@@ -119,17 +119,17 @@ event manager applet Foo
         - ping 10.10.1.1
         - ping 10.10.1.2
         - }
-        - testping             => executes function testing
+        - testping             => run the function
         - sh shell function    => display above function and others 
 -	sh file <file> md5sum     => Nexus md5 verification
--	hardware access-list allow deny ace => Nexus 6.1(3) and up, allow ip tcp synwait-time 10   => lowers tcp timeout from default 30s to 10s
+-	hardware access-list allow deny ace => Nexus 6.1(3) and up, allow 
+-       ip tcp synwait-time 10   => lowers tcp timeout from default 30s to 10s
 -	sh power inline  => show which ports are powering POE devices
 -	mac address-table notification mac-move   => shows port flapping on switch
 -	int> mac-address-table 0000.0000.0001   => change my mac address
--	denies in PBR acls
 -	clear spanning-tree counters
 -	sh spanning-tree interface f0/0 detail => show # of bpdus sent/received
--	sh spanning-tree detail | I ieee|from|is exec     => shows STP TCN events on a switch 
+-	sh spanning-tree detail | incl ieee|from|is exec     => shows STP TCN events on a switch 
 -	sh spanning-tree detail | incl ieee|from|occur     => shows STP TCN events on a switch 
 -	control-plane host > management-interface f2/0 allow ssh
 -	no mgmt. protocols except ssh, and only on f2/0 (deprecated now?)
