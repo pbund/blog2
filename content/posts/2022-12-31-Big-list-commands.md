@@ -91,16 +91,17 @@ tclsh
 }
 tclquit
 ```
--	Change to default (blank) config without rebooting, using local blank config file created in previous step, takes 10-15 sec:
-router# config replace flash:blank.cfg
+-	Change to default (blank) config without rebooting, using local blank config file created in previous step, takes 10-15 sec: `config replace flash:blank.cfg`
 -	Use EEM to wait for two events to occur, in any order, then take some action:
+```
 event manager applet Foo
-event tag e1 syslog pattern paul2
-event tag e2 syslog pattern jill2
-trigger
-  correlate event e1 andM event e2
-action 1.0 syslog msg “write some msg to syslog”
-action 2.0 cli command “show clock | append foo.txt”
+  event tag e1 syslog pattern paul2
+  event tag e2 syslog pattern jill2
+  trigger
+    correlate event e1 andM event e2
+  action 1.0 syslog msg “write some msg to syslog”
+  action 2.0 cli command “show clock | append foo.txt”
+```
 -	Enable shell cmds in this session or permanently, good on ios 15.1+. Enables multi-pipes, grep, man, cat, cut, echo, head, tail, sort, nl, redirect to file, unix-script for cmds and functions (see D Bombal youtube videos)
 term shell           => for this session only
 conf>shell processing full    => for everyone
