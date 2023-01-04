@@ -170,10 +170,13 @@ sh monitor capture buffer Paulbuffer  (shows captured packets)
 sh monitor capture buffer Paulbuffer dump  (show contents of packets)
 monitor capture buffer Paulbuffer export tftp://1.1.1.1/capture.pcap
 ```
--	to decrypt a layer 7 encypted password directly on a router, paste the encrypted pw in a key chain, then do a “show key chain” to show the plaintext version
--	key chain Foo > key 1 > key-string 7 7 0522282A
--	show key chain
--	“Key-chain Foo: key 1 == text “INE” …”
+- To decrypt a layer 7 encypted password directly on a router, paste the encrypted pw in a key chain, then do a “show key chain” to show the plaintext version
+```
+key chain Foo
+  key 1
+  key-string 7 7 0522282A
+show key chain    => should show plaintext "INE"
+```
 -	sh ip bgp version recent 10	=> ten most recent bgp best paths
 -	sh ip route | include 00:00		=> show most recent RIB updates
 -	show facility-alarm status		=> on asr1001x, show alarms that activate idiot/critical lights (when port is configged up but status down)
