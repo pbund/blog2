@@ -141,14 +141,18 @@ event manager applet Foo
 -	sh snmp mib		=> show all mib values
 -	sh snmp mib ifmib ifindex details	=> shows interface ifindex values
 -	snmp-server ifindex persist	=> maintain same ifindex values
--	3650 packet capture commands
--	no monitor capture 3
--	monitor cap 3 match any buffer size 2 interface g1/0/3 both (no filter)
--	monitor cap 3 match ipv4 any host 192.168.1.1 buffer size 2 int g1/0/3 both (simple filter)
--	monitor cap 3 start|stop
--	show monitor cap 3 buff	=> see packet dump on screen
--	monitor cap 3 export flash:foo.pcap
--	copy foo.pcap scp://172.16.100.100
+-	3650 packet capture commands (IOS-XE)
+```
+no monitor capture 3
+monitor cap 3 match any buffer size 2 interface g1/0/3 both (no filter)
+monitor cap 3 start|stop
+show monitor cap 3 => see details about capture session
+show monitor cap 3 buff	=> see packet dump on screen
+monitor cap 3 export flash:foo.pcap
+copy foo.pcap scp://172.16.100.100
+```
+- could also use capture cmds that filter what type of traffic to capture
+    - monitor cap 3 match ipv4 any host 192.168.1.1 buffer size 2 int g1/0/3 both (simple filter)
 -	43xx/44xx packet capture commands (also probably other ios-xe switches)
 -	no monitor capture 1
 -	monitor capture 1 match any OR
