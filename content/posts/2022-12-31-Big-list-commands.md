@@ -141,7 +141,7 @@ event manager applet Foo
 -	sh snmp mib		=> show all mib values
 -	sh snmp mib ifmib ifindex details	=> shows interface ifindex values
 -	snmp-server ifindex persist	=> maintain same ifindex values
-- 3650 packet capture commands (IOS-XE)
+3650 packet capture commands (and probably all IOS-XE devices)
 ```
 no monitor capture 3
 monitor cap 3 int g0/0/0 both match any buffer size 2 (all traffic both directions)
@@ -155,17 +155,19 @@ copy foo.pcap scp://172.16.100.100
 - could also use capture cmds that filter what type of traffic to capture
     - monitor cap 3 match ipv4 any host 192.168.1.1 buffer size 2 int g1/0/3 both (simple filter)
     - monitor cap 3 access-list Foo buffer size 2 int g1/0/3 both (ACL filter)
--	43xx/44xx packet capture commands (also probably other ios-xe switches)
--	no monitor capture 1
--	monitor capture 1 match any OR
--	monitor capture 1 access-list Not_eigrp
--	monitor capture 1 interface f0/0 both
--	monitor capture 1 interface f0/1 both
--	monitor capture 1 start|stop
--	sh monitor cap 1 buffer		=> show number of packets captured
--	sh monitor cap 1 buffer	brief	=> show packets (one-liners)
--	monitor capture 1 export tftp://10.1.1.1/foo.pcap
--	3900 packet capture (this version works on 3900 routers)
+Older packet capture commands
+```
+no monitor capture 1
+monitor capture 1 match any OR
+monitor capture 1 access-list Not_eigrp
+monitor capture 1 interface f0/0 both
+monitor capture 1 interface f0/1 both
+monitor capture 1 start|stop
+sh monitor cap 1 buffer		=> show number of packets captured
+sh monitor cap 1 buffer	brief	=> show packets (one-liners)
+monitor capture 1 export tftp://10.1.1.1/foo.pcap
+```
+3900 packet capture (this version works on 3900 routers)
 -	monitor capture buffer Paulbuffer size 2048 max-size 100 linear
 -	ip access-list ext Foo
 -	permit ip host 1.1.1.1 any
