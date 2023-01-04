@@ -174,7 +174,7 @@ monitor capture buffer Paulbuffer export tftp://1.1.1.1/capture.pcap
 ```
 key chain Foo
   key 1
-  key-string 7 7 0522282A
+  key-string 7 0522282A
 show key chain    => should show plaintext "INE"
 ```
 -	sh ip bgp version recent 10	=> ten most recent bgp best paths
@@ -182,11 +182,9 @@ show key chain    => should show plaintext "INE"
 -	show facility-alarm status		=> on asr1001x, show alarms that activate idiot/critical lights (when port is configged up but status down)
 -	test cable-diagnostics tdr interface g0/24, then sh cable-diag tdr int g0/24
 -	-------------------
--	ACI cli cmds
+-	ACI CLI cmds
 -	-------------------
--	
 -	APIC CLI cmds
--	---------------------
 -	show endpoint ip <ip>    => show where ip is
 -	show vpc map          => maps vpcs to interface policy name
 -	show port-channel map   => similar to sh vpc map but shows less info
@@ -207,9 +205,8 @@ show key chain    => should show plaintext "INE"
 -	sh endpoints leaf 201 interface ethernet 1/1-128
 -	fabric 101-102 show version | grep supervisor   => show model numbers of spines
 -	fabric 201-202 show ip int brief vrf all
--	 
--	Spine/Leaf CLI cmds
 -	--------------------------
+-	Spine/Leaf CLI cmds
 -	(must type out whole word 'show')
 -	show int brief                             => shows which ints are up, also speed/trunk status
 -	show int description                   => show port description, aka 'show int des'q
