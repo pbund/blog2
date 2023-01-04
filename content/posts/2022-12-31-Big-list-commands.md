@@ -155,31 +155,21 @@ copy foo.pcap scp://172.16.100.100
 - could also use capture cmds that filter what type of traffic to capture
     - monitor cap 3 match ipv4 any host 192.168.1.1 buffer size 2 int g1/0/3 both (simple filter)
     - monitor cap 3 access-list Foo buffer size 2 int g1/0/3 both (ACL filter)
-- Older packet capture commands
+- 3900 packet capture (this version works on 3900 routers)
 ```
-no monitor capture 1
-monitor capture 1 match any OR
-monitor capture 1 access-list Not_eigrp
-monitor capture 1 interface f0/0 both
-monitor capture 1 interface f0/1 both
-monitor capture 1 start|stop
-sh monitor cap 1 buffer		=> show number of packets captured
-sh monitor cap 1 buffer	brief	=> show packets (one-liners)
-monitor capture 1 export tftp://10.1.1.1/foo.pcap
+monitor capture buffer Paulbuffer size 2048 max-size 100 linear
+ip access-list ext Foo
+permit ip host 1.1.1.1 any
+monitor capture buffer Paulbuffer filter access-list Foo
+monitor capture point ip cef Paulpoint g0/1 both
+monitor capture point associate Paulpoint Paulbuffer
+monitor capture point start Paulpoint  (can use “stop” too)
+sh monitor capture point Paulpoint
+sh monitor capture buffer Paulbuffer parameters (show # of packets captured)
+sh monitor capture buffer Paulbuffer  (shows captured packets)
+sh monitor capture buffer Paulbuffer dump  (show contents of packets)
+monitor capture buffer Paulbuffer export tftp://1.1.1.1/capture.pcap
 ```
-3900 packet capture (this version works on 3900 routers)
--	monitor capture buffer Paulbuffer size 2048 max-size 100 linear
--	ip access-list ext Foo
--	permit ip host 1.1.1.1 any
--	monitor capture buffer Paulbuffer filter access-list Foo
--	monitor capture point ip cef Paulpoint g0/1 both
--	monitor capture point associate Paulpoint Paulbuffer
--	monitor capture point start Paulpoint  (can use “stop” too)
--	sh monitor capture point Paulpoint
--	sh monitor capture buffer Paulbuffer parameters (show # of packets captured)
--	sh monitor capture buffer Paulbuffer  (shows captured packets)
--	sh monitor capture buffer Paulbuffer dump  (show contents of packets)
--	monitor capture buffer Paulbuffer export tftp://1.1.1.1/capture.pcap
 -	to decrypt a layer 7 encypted password directly on a router, paste the encrypted pw in a key chain, then do a “show key chain” to show the plaintext version
 -	key chain Foo > key 1 > key-string 7 7 0522282A
 -	show key chain
