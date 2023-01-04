@@ -228,15 +228,11 @@ show key chain    => should show plaintext "INE"
 -	show vpc
 -	iping <ip>, should specify tenant:vrf with '-V tenant:vrf' or it will use mgmt vrf
 -	iping -V anc_prod:anc_prod_main_vrf -S 151.169.2.1 151.169.108.55
--	
--	Juniper firewall CLI cmds
 -	----------------------------------
+-	Juniper firewall CLI cmds
 -	show interface terse
 -	show route 1.1.1.1
 -	show chassis alarm
 -	show chassis cluster status
 -	show chassis fpc details
 -	show log mess | last 50
-
-
-
