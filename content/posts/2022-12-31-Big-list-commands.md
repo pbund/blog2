@@ -141,7 +141,8 @@ event manager applet Foo
 -	sh snmp mib		=> show all mib values
 -	sh snmp mib ifmib ifindex details	=> shows interface ifindex values
 -	snmp-server ifindex persist	=> maintain same ifindex values
-- 3650 packet capture commands (and probably all IOS-XE devices)
+----------------------------------
+IOS-XE packet capture commands
 ```
 no monitor capture 3
 monitor cap 3 int g0/0/0 both match any buffer size 2 (all traffic both directions)
@@ -155,7 +156,8 @@ copy foo.pcap scp://172.16.100.100
 - could also use capture cmds that filter what type of traffic to capture
     - monitor cap 3 match ipv4 any host 192.168.1.1 buffer size 2 int g1/0/3 both (simple filter)
     - monitor cap 3 access-list Foo buffer size 2 int g1/0/3 both (ACL filter)
-- 3900 packet capture (this version works on 3900 routers)
+----------------------------------
+IOS older packet capture method
 ```
 monitor capture buffer Paulbuffer size 2048 max-size 100 linear
 ip access-list ext Foo
