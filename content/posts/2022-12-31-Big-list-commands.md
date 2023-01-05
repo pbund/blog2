@@ -184,7 +184,7 @@ show key chain    => should show plaintext "INE"
 -	-------------------
 -	ACI CLI cmds
 -	-------------------
--	APIC CLI cmds
+APIC CLI cmds
 -	show endpoint ip <ip>    => show where ip is
 -	show vpc map          => maps vpcs to interface policy name
 -	show port-channel map   => similar to sh vpc map but shows less info
@@ -206,7 +206,7 @@ show key chain    => should show plaintext "INE"
 -	fabric 101-102 show version | grep supervisor   => show model numbers of spines
 -	fabric 201-202 show ip int brief vrf all
 -	--------------------------
--	Spine/Leaf CLI cmds
+ACI Spine/Leaf CLI cmds
 -	(must type out whole word 'show')
 -	show int brief                             => shows which ints are up, also speed/trunk status
 -	show int description                   => show port description, aka 'show int des'q
@@ -229,7 +229,7 @@ show key chain    => should show plaintext "INE"
 -	iping <ip>, should specify tenant:vrf with '-V tenant:vrf' or it will use mgmt vrf
 -	iping -V anc_prod:anc_prod_main_vrf -S 151.169.2.1 151.169.108.55
 -	----------------------------------
--	Juniper firewall CLI cmds
+	Juniper firewall CLI cmds
 -	show interface terse
 -	show route 1.1.1.1
 -	show chassis alarm
