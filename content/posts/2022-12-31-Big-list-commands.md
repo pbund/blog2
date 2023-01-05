@@ -255,8 +255,8 @@ GIT cmds, not involving remote repositories (repos)
 - git branch Foobranch	-> create new branch, in list the * is next to your current branch
 - git checkout Foobranch -> switch to Foobranch
 
-Commands involving remote repos
 -----------------------------------------------
+Commands involving remote repos
 - git clone ssh://x_person@example.com/path/to/team-project.git
 - git remote -v 		-> show info on local repo
 - git branch -a		-> list all branches, local and remote
