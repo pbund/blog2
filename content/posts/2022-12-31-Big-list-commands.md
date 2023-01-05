@@ -236,5 +236,40 @@ Juniper firewall CLI cmds
 -	show chassis cluster status
 -	show chassis fpc details
 -	show log mess | last 50
+----------------------------------
+GIT cmds
+Git commands not involving remote repositories (repos)
+-----------------------------------------------------------------------------
+git --version
+git config --global user.name “Name”
+git config --global user.email “name@foo.com”
+git config --list
+git config --help	-> get help on config option
+git init		-> initialize a repository from existing code, creates a .git directory file too
+git status		-> use this often, shows changed files and other info
+git add foo.py		-> adds foo.py file to staging area
+git reset foo.py	-> remove foo.py file from staging area
+git add -A		-> add all files to staging area
+git reset		-> remove all files from staging area
+git commit -m “my first commit comment”	-> commit to local repository
+git log			-> shows the commits
+git branch		-> shows your current branches (only local?)
+git branch Foobranch	-> create new branch, in list the * is next to your current branch
+git checkout Foobranch -> switch to Foobranch
+
+Commands involving remote repos
+-----------------------------------------------
+git clone ssh://x_person@example.com/path/to/team-project.git
+git remote -v 		-> show info on local repo
+git branch -a		-> list all branches, local and remote
+git diff			-> list all changes to the existing files you have made
+git pull origin master	-> pull any changes on remote repo, can be done right before you push
+git push origin master	-> push changes to remote repo
+git push -u origin Foobranch -> after committing, use this to push to remote repo, which you can verify with git branch -a, note this does not merge into main branch on remote repo, now others can review your work
+git checkout master	-> switch to local master
+git merge Foobranch	-> merge into local master, do this before uploading to remote repo
+git push origin master	-> push these changes to remote repo
+git branch -d Foobranch -> delete local branch afterwards
+git push origin --delete Foobranch -> then delete remote branch afterwards
 
 Revised 1/4/23. 
