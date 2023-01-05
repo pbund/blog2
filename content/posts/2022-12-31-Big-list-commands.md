@@ -181,9 +181,7 @@ show key chain    => should show plaintext "INE"
 -	sh ip route | include 00:00		=> show most recent RIB updates
 -	show facility-alarm status		=> on asr1001x, show alarms that activate idiot/critical lights (when port is configged up but status down)
 -	test cable-diagnostics tdr interface g0/24, then sh cable-diag tdr int g0/24
--	-------------------
--	ACI CLI cmds
--	-------------------
+-	--------------------------
 APIC CLI cmds
 -	show endpoint ip <ip>    => show where ip is
 -	show vpc map          => maps vpcs to interface policy name
@@ -228,11 +226,13 @@ ACI Spine/Leaf CLI cmds
 -	show vpc
 -	iping <ip>, should specify tenant:vrf with '-V tenant:vrf' or it will use mgmt vrf
 -	iping -V anc_prod:anc_prod_main_vrf -S 151.169.2.1 151.169.108.55
--	----------------------------------
-	Juniper firewall CLI cmds
+----------------------------------
+Juniper firewall CLI cmds
 -	show interface terse
 -	show route 1.1.1.1
 -	show chassis alarm
 -	show chassis cluster status
 -	show chassis fpc details
 -	show log mess | last 50
+
+Revised 1/4/23. 
