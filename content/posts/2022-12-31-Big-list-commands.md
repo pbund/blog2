@@ -256,7 +256,7 @@ GIT cmds, not involving remote repositories (repos)
 - git checkout Foobranch -> switch to Foobranch
 
 -----------------------------------------------
-Commands involving remote repos
+GIT commands involving remote repos
 - git clone ssh://x_person@example.com/path/to/team-project.git
 - git remote -v 		-> show info on local repo
 - git branch -a		-> list all branches, local and remote
