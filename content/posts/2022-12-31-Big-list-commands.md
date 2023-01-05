@@ -6,9 +6,9 @@ draft: false
 
 This is a compendium of useful or interesting commands and tips I’ve gathered over the years. Mainly these apply to Cisco equipment, but there are a couple of Juniper and Linux commands. I almost always show example commands since my brain processes them better.
 
-Warning: Some of these command are dangerous, where they might hose your system if used. Don’t come crying to me if this happens. Research their usage before any relying on them for production systems. But largely they are more useful than dangerous.
+Warning: Some of these commands are dangerous, where they might hose your system if used. Don’t come crying to me if this happens. Research their usage before relying on them for production systems. But largely they are more useful than dangerous.
 
-# Useful commands
+# The List
 - To activate serial controllers and interfaces, when they are first installed, especially with a multiflex t1 card, not a wic-1dsu-t1-v2 type card
     - `card type t1 0 1` (example) will cause controllers to appear in config
     - `controller t1 0/1` > `channel-group 0 timeslots 1-24` will cause s0/1 interface to appear in config
