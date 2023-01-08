@@ -14,7 +14,7 @@ Let’s show some examples. (These were run on a Cisco ISR 4331 running 16.9.6 c
 
 ### Synchronous mode (“sync yes”)
 
-So you want run the applet before the matched CLI command. In this example, whenever the user types the `show alias` command, you want a `show clock` to be executed first:
+So you've decided to run the applet before the matched CLI command. In this example, whenever the user types the `show alias` command, you want a `show clock` to be executed first:
 
 ```
 Router# conf t
@@ -91,4 +91,4 @@ If you don’t want to run the CLI command, either sync or async mode could be u
 
 Googling “eem sync skip” will show many good links on this subject. I recommend any article under ipspace.net – author Ivan Pepelnjak is a network stud.
 
-Revised 12/29/22 - email oldpaul99@gmail.com if you have comments/corrections
+Revised 12/29/22 - email oldpaul99@gmail.com if you have comments/corrections.
