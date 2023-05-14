@@ -4,7 +4,7 @@ date: 2022-12-21T07:01:24-06:00
 draft: false
 ---
 
-For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post will try to explain how to use the “sync” parameter in an EEM applet. It’s usage seems to confuse users, including myself sometimes. So I did some reading and testing, and here’s what I found.
+For those of you familiar with Cisco’s EEM (Embedded Event Manager), this post will try to explain how to use the “sync” parameter in an EEM applet. Its usage seems to confuse users, including myself sometimes. So I did some reading and testing, and here’s what I found.
 
 Note that EEM usually requires an event detector to be specified, i.e. CLI events, syslog events, routing events, etc. The sync argument is only used with the CLI event detector.
 
